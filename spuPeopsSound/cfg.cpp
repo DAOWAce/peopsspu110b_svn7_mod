@@ -151,12 +151,14 @@ void ReadConfig(void)
 		iUseReverb=2;
 		iUseInterpolation=2;
 		iDisStereo=0;
+		iUseDBufIrq=1;
 		iEmuType=0;
 		iXAStrength=0;
 		iCDDAStrength=0;
 		iOutput2Strength=0;
+		APU_run = 10;
 		iReleaseIrq = 0;
-		iLatency = 8;
+		iLatency = 4;
 		
 		iXAInterp = 2;
 		iCDDAInterp = 1;

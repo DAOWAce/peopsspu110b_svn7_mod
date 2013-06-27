@@ -1315,7 +1315,7 @@ static void *MAINThread(void *arg)
 		// until enuff free place is available/a new channel gets
 		// started
 		
-		if( iUseTimer <= 2 )
+		if( iUseTimer < 3 )
 		{
 			if(dwNewChannel)																		// new channel should start immedately?
 			{ 																								 // (at least one bit 0 ... MAXCHANNEL is set?)
@@ -1697,7 +1697,7 @@ static void *MAINThread(void *arg)
 							
 							////////////////////////////////////////////
 							
-							if( iUseTimer <= 2 && bIRQReturn)														// special return for "spu irq - wait for cpu action"
+							if(bIRQReturn)														// special return for "spu irq - wait for cpu action"
 							{
 								bIRQReturn=0;
 								if(iUseTimer<2)
