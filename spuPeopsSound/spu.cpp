@@ -242,7 +242,7 @@ long total_apu_cycles;
 
 long APU_run = 10;
 
-int framelimiter = 1;
+int framelimiter = 0;
 
 
 
@@ -1315,7 +1315,7 @@ static void *MAINThread(void *arg)
 		// until enuff free place is available/a new channel gets
 		// started
 		
-		if( iUseTimer < 3 )
+		if( iUseTimer <= 2 )
 		{
 			if(dwNewChannel)																		// new channel should start immedately?
 			{ 																								 // (at least one bit 0 ... MAXCHANNEL is set?)
@@ -1697,7 +1697,7 @@ static void *MAINThread(void *arg)
 							
 							////////////////////////////////////////////
 							
-							if(bIRQReturn)														// special return for "spu irq - wait for cpu action"
+							if( iUseTimer <= 2 && bIRQReturn)														// special return for "spu irq - wait for cpu action"
 							{
 								bIRQReturn=0;
 								if(iUseTimer<2)
@@ -2491,12 +2491,12 @@ void CALLBACK SPUasync(unsigned long cycle)
 #ifdef _WINDOWS
 	if(iDebugMode==2)
 	{
-		if(IsWindow(hWDebug)) DestroyWindow(hWDebug);
+		if(hWDebug) DestroyWindow(hWDebug);
 		hWDebug=0;iDebugMode=0;
 	}
 	if(iRecordMode==2)
 	{
-		if(IsWindow(hWRecord)) DestroyWindow(hWRecord);
+		if(hWRecord) DestroyWindow(hWRecord);
 		hWRecord=0;iRecordMode=0;
 	}
 #endif
@@ -2828,7 +2828,7 @@ long SPUopen(void)
 	LastWrite=0xffffffff;LastPlay=0;											// init some play vars
 	LastPad=0xffffffff;
 
-	if(!IsWindow(hW)) hW=GetActiveWindow();
+	if(!hW) hW=GetActiveWindow();
 	hWMain = hW;																					// store hwnd
 #endif
 	
@@ -2882,9 +2882,9 @@ long CALLBACK SPUclose(void)
 	bSPUIsOpen=0; 																				// no more open
 	
 #ifdef _WINDOWS
-	if(IsWindow(hWDebug)) DestroyWindow(hWDebug);
+	if(hWDebug) DestroyWindow(hWDebug);
 	hWDebug=0;
-	if(IsWindow(hWRecord)) DestroyWindow(hWRecord);
+	if(hWRecord) DestroyWindow(hWRecord);
 	hWRecord=0;
 #endif
 	
