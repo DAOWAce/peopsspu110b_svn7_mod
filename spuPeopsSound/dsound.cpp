@@ -241,13 +241,11 @@ void DSound_SoundPhantomPad()
 {
 	LPVOID lpvPtr1, lpvPtr2;
 	unsigned long dwBytes1,dwBytes2; 
-	unsigned short *lpSS, *lpSD;
-	unsigned long dw,cplay,cwrite;
+	unsigned short *lpSD;
+	unsigned long cplay,cwrite;
 	HRESULT hr;
 	unsigned long status;
-	int pad, post_pad;
-	int dst_flip;
-	int lBytes;
+	unsigned long lBytes;
 	
 	
 	if( dsound_valid == 0 ) return;
@@ -387,8 +385,8 @@ void DSound_SoundFeedStreamData(unsigned char* pSound,long lBytes)
 	unsigned long dw,cplay,cwrite;
 	HRESULT hr;
 	unsigned long status;
-	int pad, post_pad;
-	int dst_flip;
+	unsigned long pad, post_pad;
+	unsigned long dst_flip;
 	
 	
 	if( dsound_valid == 0 ) return;
@@ -535,7 +533,7 @@ void DSound_SoundFeedStreamData(unsigned char* pSound,long lBytes)
 		if( dwBytes1 > 0 ) {
 			int size;
 
-			size = (lBytes <= dwBytes1) ? lBytes : dwBytes1;
+			size = ((unsigned)lBytes <= dwBytes1) ? lBytes : dwBytes1;
 			memcpy( lpSD, lpSS, size );
 
 
@@ -557,7 +555,7 @@ void DSound_SoundFeedStreamData(unsigned char* pSound,long lBytes)
 			}
 
 
-			size = (lBytes <= dwBytes2) ? lBytes : dwBytes2;
+			size = ((unsigned)lBytes <= dwBytes2) ? lBytes : dwBytes2;
 			memcpy( lpSD, lpSS, size );
 
 

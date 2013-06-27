@@ -427,7 +427,7 @@ BOOL OnInitDSoundDialog(HWND hW)
 {
 	HWND hWC;
 	
-	ReadConfig();
+	//ReadConfig();
 	
 	if(iUseXA)      CheckDlgButton(hW,IDC_ENABXA,TRUE);
 	if(iXAPitch)    CheckDlgButton(hW,IDC_XAPITCH,TRUE);

@@ -286,7 +286,8 @@ void XAudio2_SoundFeedStreamData( unsigned char* pSound, long lBytes )
 
 
 	pad = 0;
-	post_pad = SOUNDLEN( phantom_post_pad );
+	if(phantom_padder) post_pad = SOUNDLEN( phantom_post_pad );
+    else post_pad = 0;
 
 
 	if( XAudio2_SoundGetBytesBuffered() == 0 )

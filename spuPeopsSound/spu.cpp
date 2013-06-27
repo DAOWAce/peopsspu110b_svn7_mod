@@ -2922,6 +2922,8 @@ long CALLBACK SPUtest(void)
 long CALLBACK SPUconfigure(void)
 {
 #ifdef _WINDOWS
+    ReadConfig();
+
 	DialogBox(hInst,MAKEINTRESOURCE(IDD_CFGDLG),
 		GetActiveWindow(),(DLGPROC)DSoundDlgProc);
 #else
