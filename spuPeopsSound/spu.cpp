@@ -2672,11 +2672,11 @@ void RemoveTimer(void)
 	if(iUseTimer==1) timeEndPeriod(1);										// windows timer? stop it
 
 
-	if(iUseTimer >= 2) 																		 // windows thread?
-	{
-		while(!thread_async_ended) {Sleep(1L);} 						// -> wait till thread has ended
-		timeEndPeriod(1);										// windows timer? stop it
-	}
+//	if(iUseTimer >= 2) 																		 // windows thread?
+//	{
+//		while(!thread_async_ended) {Sleep(1L);} 						// -> wait till thread has ended
+//		timeEndPeriod(1);										// windows timer? stop it
+//	}
 #else
 	
 #ifndef NOTHREADLIB
